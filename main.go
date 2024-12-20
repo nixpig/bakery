@@ -1,7 +1,17 @@
 package main
 
-import "fmt"
+import (
+	"log"
+	"os"
+
+	"github.com/nixpig/bakery/internal/server"
+)
 
 func main() {
-	fmt.Println("ready to go...")
+	appConfig := server.AppConfig{Port: "8080"}
+
+	if err := server.Start(appConfig); err != nil {
+		log.Fatal(err)
+		os.Exit(1)
+	}
 }
